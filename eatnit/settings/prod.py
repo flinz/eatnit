@@ -10,7 +10,7 @@ from S3 import CallingFormat
 from common import *
 
 
-########## EMAIL CONFIGURATION
+# ######### EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -34,21 +34,21 @@ EMAIL_USE_TLS = True
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = EMAIL_HOST_USER
-########## END EMAIL CONFIGURATION
+# ######### END EMAIL CONFIGURATION
 
 
-########## DATABASE CONFIGURATION
+# ######### DATABASE CONFIGURATION
 DATABASES = postgresify()
-########## END DATABASE CONFIGURATION
+# ######### END DATABASE CONFIGURATION
 
 
-########## CACHE CONFIGURATION
+# ######### CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
 CACHES = memcacheify()
-########## END CACHE CONFIGURATION
+# ######### END CACHE CONFIGURATION
 
 
-########## CELERY CONFIGURATION
+# ######### CELERY CONFIGURATION
 # See: http://docs.celeryproject.org/en/latest/configuration.html#broker-transport
 BROKER_TRANSPORT = 'amqplib'
 
@@ -72,10 +72,20 @@ BROKER_URL = environ.get('RABBITMQ_URL') or environ.get('CLOUDAMQP_URL')
 
 # See: http://docs.celeryproject.org/en/latest/configuration.html#celery-result-backend
 CELERY_RESULT_BACKEND = 'amqp'
-########## END CELERY CONFIGURATION
+# ######### END CELERY CONFIGURATION
 
+# ######### GUNICORN CONFIGURATION
+# Enable gunicorn if it's installed
+try:
+    import gunicorn  # noqa
+    INSTALLED_APPS += (
+        'gunicorn',
+    )
+except ImportError:
+    pass
+# ######### END GUNICORN CONFIGURATION
 
-########## STORAGE CONFIGURATION
+# ######### STORAGE CONFIGURATION
 # See: http://django-storages.readthedocs.org/en/latest/index.html
 INSTALLED_APPS += (
     'storages',
@@ -103,10 +113,10 @@ AWS_HEADERS = {
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
-########## END STORAGE CONFIGURATION
+# ######### END STORAGE CONFIGURATION
 
 
-########## COMPRESSION CONFIGURATION
+# ######### COMPRESSION CONFIGURATION
 # See: http://django_compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
 COMPRESS_OFFLINE = True
 
@@ -122,16 +132,16 @@ COMPRESS_CSS_FILTERS += [
 COMPRESS_JS_FILTERS += [
     'compressor.filters.jsmin.JSMinFilter',
 ]
-########## END COMPRESSION CONFIGURATION
+# ######### END COMPRESSION CONFIGURATION
 
 
-########## SECRET CONFIGURATION
+# ######### SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = environ.get('SECRET_KEY', SECRET_KEY)
-########## END SECRET CONFIGURATION
+# ######### END SECRET CONFIGURATION
 
-########## ALLOWED HOSTS CONFIGURATION
+# ######### ALLOWED HOSTS CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['.herokuapp.com']
-########## END ALLOWED HOST CONFIGURATION
+# ######### END ALLOWED HOST CONFIGURATION
 
