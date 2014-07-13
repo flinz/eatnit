@@ -11,4 +11,8 @@ urlpatterns = patterns(
     # Admin panel and documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # Login and user admin
+    (r'^accounts/', include('allauth.urls')),
+    #url(r'^login/$', eatnit.eatnit.views.user_login, name='user_login')
 )

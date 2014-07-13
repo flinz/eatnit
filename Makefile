@@ -1,6 +1,6 @@
 MANAGE=python manage.py
 PROJECT_NAME=eatnit
-FLAKE8_OPTS=--exclude=.git,migrations --max-complexity=10 --ignore=E501
+FLAKE8_OPTS=--exclude=.git,migrations --max-complexity=10 --ignore=E501,F403
 SETTINGS=--settings=eatnit.settings.dev
 
 test:

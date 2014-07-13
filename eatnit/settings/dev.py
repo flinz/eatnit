@@ -16,7 +16,7 @@ TEMPLATE_DEBUG = DEBUG
 
 # ######### SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY=r'this_dev_secret'
+SECRET_KEY = r'dev_secret'
 # ######### END SECRET CONFIGURATION
 
 
