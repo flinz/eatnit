@@ -13,6 +13,9 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     # Login and user admin
-    (r'^accounts/', include('allauth.urls')),
-    #url(r'^login/$', eatnit.eatnit.views.user_login, name='user_login')
+    url(r'^accounts/', include('allauth.urls')),
+ 	
+ 	# Eatnit.com specific 
+    url(r'^', include('eatnit.apps.food.urls')),
+       
 )
